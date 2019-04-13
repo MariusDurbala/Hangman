@@ -17,11 +17,11 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="Play">
+          <Tab fx:id="tabPlay" text="Play">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: lightpink;">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: lightblue;">
                      <children>
                         <Label layoutX="14.0" layoutY="14.0" text="Category" />
                         <ComboBox layoutX="70.0" layoutY="10.0" prefWidth="200.0" />
@@ -49,7 +49,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Login">
+          <Tab fx:id="tabLogin" disable="true" text="Login">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -69,7 +69,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Change categories" />
+              <MenuItem fx:id="ChangeCategories" mnemonicParsing="false" onAction="#activateLoginTab" text="Change categories" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
