@@ -57,11 +57,30 @@
                         <Label fx:id="lblUsername" layoutX="14.0" layoutY="14.0" text="Username" />
                         <Label fx:id="lblPassword" layoutX="14.0" layoutY="47.0" text="Password" />
                         <TextField fx:id="Username" layoutX="80.0" layoutY="10.0" />
-                        <PasswordField fx:id="Password" layoutX="80.0" layoutY="43.0" />
+                        <PasswordField fx:id="Password" layoutX="80.0" layoutY="43.0" onKeyReleased="#loginEnterKey" />
                         <Button fx:id="Login" layoutX="80.0" layoutY="76.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="25.0" prefWidth="147.0" text="Login" />
                      </children></AnchorPane>
             </content>
           </Tab>
+            <Tab fx:id="tabCategories" disable="true" text="Update categories">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="23.0" layoutY="14.0" text="Category name" />
+                        <TextField layoutX="126.0" layoutY="10.0" prefHeight="25.0" prefWidth="208.0" />
+                        <Button layoutX="348.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Add" />
+                        <Separator layoutX="26.0" layoutY="47.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <Label layoutX="23.0" layoutY="60.0" text="Category" />
+                        <ComboBox layoutX="126.0" layoutY="56.0" prefHeight="25.0" prefWidth="279.0" />
+                        <Label layoutX="22.0" layoutY="93.0" text="Word" />
+                        <Label layoutX="26.0" layoutY="136.0" text="Hint" />
+                        <TextField layoutX="126.0" layoutY="89.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField layoutX="126.0" layoutY="132.0" prefHeight="25.0" prefWidth="279.0" />
+                        <Button layoutX="354.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Add" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
    </center>
