@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Play">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: lightpink;">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Category" />
+                        <ComboBox layoutX="70.0" layoutY="10.0" prefWidth="200.0" />
+                        <CheckBox layoutX="282.0" layoutY="14.0" mnemonicParsing="false" text="Random category" />
+                        <Separator layoutY="42.0" prefHeight="3.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <Button layoutX="478.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="187.0" text="Play" />
+                        <Label layoutX="14.0" layoutY="62.0" text="Word or letter" />
+                        <TextField layoutX="108.0" layoutY="58.0" prefHeight="25.0" prefWidth="220.0" />
+                        <Button layoutX="346.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Guess" />
+                        <TextField layoutX="108.0" layoutY="109.0" prefHeight="25.0" prefWidth="349.0" />
+                        <Label layoutX="13.0" layoutY="113.0" text="Word to guess" />
+                        <Label layoutX="622.0" layoutY="443.0" prefHeight="51.0" prefWidth="86.0" text="Points">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="26.0" layoutY="155.0" mnemonicParsing="false" text="Hint" />
+                        <Label layoutX="108.0" layoutY="159.0" prefHeight="17.0" prefWidth="293.0" text="Hint for word" />
+                        <Label layoutX="708.0" layoutY="455.0" text="Label">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Login">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Username" />
+                        <Label layoutX="14.0" layoutY="47.0" text="Password" />
+                        <TextField fx:id="Username" layoutX="80.0" layoutY="10.0" />
+                        <TextField fx:id="Password" layoutX="80.0" layoutY="43.0" />
+                        <Button fx:id="Login" layoutX="80.0" layoutY="76.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="25.0" prefWidth="147.0" text="Login" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Change categories" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
