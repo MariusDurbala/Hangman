@@ -62,16 +62,16 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="tabCategories" disable="true" text="Update categories">
+            <Tab fx:id="tabCategories" onSelectionChanged="#fillCategoryComboBox" text="Update categories">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="23.0" layoutY="14.0" text="Category name" />
-                        <TextField layoutX="126.0" layoutY="10.0" prefHeight="25.0" prefWidth="208.0" />
-                        <Button layoutX="348.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Add" />
+                        <TextField fx:id="categoryName" layoutX="126.0" layoutY="10.0" prefHeight="25.0" prefWidth="208.0" />
+                        <Button fx:id="btnAddCategory" layoutX="348.0" layoutY="10.0" mnemonicParsing="false" onAction="#addCategory" prefHeight="25.0" prefWidth="56.0" text="Add" />
                         <Separator layoutX="26.0" layoutY="47.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                         <Label layoutX="23.0" layoutY="60.0" text="Category" />
-                        <ComboBox layoutX="126.0" layoutY="56.0" prefHeight="25.0" prefWidth="279.0" />
+                        <ComboBox fx:id="comboBoxCategories" layoutX="126.0" layoutY="56.0" prefHeight="25.0" prefWidth="279.0" />
                         <Label layoutX="22.0" layoutY="93.0" text="Word" />
                         <Label layoutX="26.0" layoutY="136.0" text="Hint" />
                         <TextField layoutX="126.0" layoutY="89.0" prefHeight="25.0" prefWidth="279.0" />

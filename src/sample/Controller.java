@@ -1,7 +1,9 @@
 package sample;
 
 import constants.ApplicationConstants;
+import helper.Utility;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -18,6 +20,9 @@ public class Controller {
     public Label lblUsername;
     public Label lblPassword;
     public Tab tabCategories;
+    public TextField categoryName;
+    public Button btnAddCategory;
+    public ComboBox comboBoxCategories;
 
     public void loginAction(ActionEvent event) {
         if (Login.getText().equals(ApplicationConstants.BTN_LOGIN_TEXT)){
@@ -52,5 +57,20 @@ public class Controller {
         if (keyEvent.getCode().equals(KeyCode.ENTER)){
             loginAction(null);
         }
+    }
+
+    public void addCategory(ActionEvent event) {
+        if (!categoryName.getText().isEmpty()){
+            Utility.createCategoryFile(categoryName.getText());
+            fillCategoryComboBox(null);
+            categoryName.clear();
+        }
+    }
+
+    public void fillCategoryComboBox(Event event) {
+        comboBoxCategories.getItems().clear();
+        comboBoxCategories.getItems().addAll(Utility.listFilesWithoutExtensionsFromPath(ApplicationConstants.APP_FOLDER_DATA_PATH+
+                "\\"+ApplicationConstants.CATEGORIES_FOLDER_NAME));
+        //comboBoxCategories.getSelectionModel().select(0);
     }
 }

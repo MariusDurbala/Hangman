@@ -1,5 +1,7 @@
 package sample;
 
+import constants.ApplicationConstants;
+import helper.Utility;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +26,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+
+        Utility.createDirectory(ApplicationConstants.APP_FOLDER_DATA_PATH);
         launch(args);
     }
 }
