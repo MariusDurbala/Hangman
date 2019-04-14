@@ -1,6 +1,7 @@
 package helper;
 
 import constants.ApplicationConstants;
+import model.Word;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -64,4 +65,23 @@ public class Utility {
         writer.close();
         fileWriter.close();
     }
-}
+    public static void cleanWordsInCategory(List<Word> words, String categoryName)throws IOException{
+        String categoryPath = ApplicationConstants.APP_FOLDER_DATA_PATH+
+                "\\"+ApplicationConstants.CATEGORIES_FOLDER_NAME+
+                "\\"+categoryName+ApplicationConstants.CATEGORY_FILE_EXTENSION;
+
+        FileWriter fileWriter = new FileWriter(categoryPath,false);
+        BufferedWriter writer = new BufferedWriter(fileWriter);
+        for (Word word:words){
+            writer.append(word.getId()+ApplicationConstants.WORD_SEPARATOR_IN_CATEGORY_ENTRY);
+            writer.append(word.getName());
+            if ((word.getHint()!= null) && !word.getHint().isEmpty()) {
+                writer.append(ApplicationConstants.WORD_SEPARATOR_IN_CATEGORY_ENTRY);
+                writer.append(word.getHint());
+            }
+            writer.newLine();
+        }
+        writer.close();
+        fileWriter.close();
+    }
+    }

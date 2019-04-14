@@ -11,8 +11,10 @@
     import javafx.scene.input.KeyEvent;
     import javafx.scene.paint.Color;
     import model.Category;
+    import model.Word;
 
     import java.io.IOException;
+    import java.util.Random;
 
     public class Controller {
         public TextField Username;
@@ -32,6 +34,12 @@
         public TextField txtNewHint;
         public Button btnAddWord;
         public Label lblCategoryNameComboBox;
+        public CheckBox chkBoxCleanWords;
+        public ComboBox cmbBoxSelectCategoryPlay;
+        public Button btnPlay;
+        public TextField txtWord2Guess;
+        public Button btnGuess;
+        public TextField txtGuess;
 
         @FXML
         public void initialize(){
@@ -98,30 +106,27 @@
         }
 
         public void fillCategoryComboBox(Event event) {
-            comboBoxCategories.getItems().clear();
-            if (tabCategories.isSelected()) {
-                try {
-                    comboBoxCategories.getItems().addAll(Utility.listFilesWithoutExtensionsFromPath(ApplicationConstants.APP_FOLDER_DATA_PATH +
-                            "\\" + ApplicationConstants.CATEGORIES_FOLDER_NAME));
-                } catch (Exception e) {
-                    //do nothing
-                } finally {
-
-                    System.out.println("Here i am");
-
-                }
+            if (tabPlay.isSelected()){
+                updatedComboBox(cmbBoxSelectCategoryPlay);
             }
-            //comboBoxCategories.getSelectionModel().select(0);
+            else if (tabCategories.isSelected()){
+                updatedComboBox(comboBoxCategories);
+            }
+        }
+        public void updatedComboBox(ComboBox comboBoxParam){
+            comboBoxParam.getItems().clear();
+            try{
+                comboBoxParam.getItems().addAll(Utility.listFilesWithoutExtensionsFromPath(
+                        ApplicationConstants.APP_FOLDER_DATA_PATH+
+                        "\\"+ApplicationConstants.CATEGORIES_FOLDER_NAME));
+            }
+            catch (Exception e){
+
+            }
         }
 
         public void handleAddWord(ActionEvent event) {
-            try {
-                CategoryParser.parseCategoryFile(ApplicationConstants.APP_FOLDER_DATA_PATH+
-                        "\\"+ApplicationConstants.CATEGORIES_FOLDER_NAME+
-                        "\\"+comboBoxCategories.getSelectionModel().getSelectedItem().toString()+ApplicationConstants.CATEGORY_FILE_EXTENSION);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            boolean chkBoxCleanActive = chkBoxCleanWords.isSelected();
             if (comboBoxCategories.getSelectionModel().getSelectedIndex()== -1){
                 lblCategoryNameComboBox.setTextFill(Color.RED);
             }
@@ -130,7 +135,7 @@
                 if (!txtNewWord.getText().isEmpty()){
                     lblWordTabCategory.setTextFill(Color.BLACK);
                     try {
-                        Category category = CategoryParser.parseCategoryFile(ApplicationConstants.APP_FOLDER_DATA_PATH+
+                        Category category = CategoryParser.parseCategoryFile(chkBoxCleanActive,ApplicationConstants.APP_FOLDER_DATA_PATH+
                                 "\\"+ApplicationConstants.CATEGORIES_FOLDER_NAME+
                                 "\\"+comboBoxCategories.getSelectionModel().getSelectedItem().toString()+
                                 ApplicationConstants.CATEGORY_FILE_EXTENSION);
@@ -139,6 +144,9 @@
                             lblWordTabCategory.setTextFill(Color.RED);
                         }
                         else {
+                            if (chkBoxCleanActive){
+                                Utility.cleanWordsInCategory(category.getWordList(),comboBoxCategories.getSelectionModel().getSelectedItem().toString());
+                            }
                             lblWordTabCategory.setTextFill(Color.BLACK);
                             Utility.addWordInCategory(category.getLastIdOfWord() + 1,
                                     txtNewWord.getText(),
@@ -158,5 +166,45 @@
                     lblWordTabCategory.setTextFill(Color.RED);
                 }
             }
+        }
+        Word wordToGuess;
+        String secretWord = "";
+        public void handlePlay(ActionEvent event) {
+            try {
+                Category category = CategoryParser.parseCategoryFile(false, ApplicationConstants.APP_FOLDER_DATA_PATH +
+                        "\\" + ApplicationConstants.CATEGORIES_FOLDER_NAME +
+                        "\\" + cmbBoxSelectCategoryPlay.getSelectionModel().getSelectedItem().toString() +
+                        ApplicationConstants.CATEGORY_FILE_EXTENSION);
+                Random rand = new Random();
+                int randomNumber = rand.nextInt(category.getLastIdOfWord());
+                wordToGuess = category.getWordList().get(randomNumber);
+
+                for (int i = 0; i < wordToGuess.getName().length(); i++) {
+                    if (wordToGuess.getName().charAt(i) !=' ') {
+                        secretWord += "_";
+                    }
+                }
+                txtWord2Guess.setText(secretWord);
+            }
+            catch (Exception e){
+
+            }
+        }
+
+        public void handleGuess(ActionEvent event) {
+            StringBuilder sb= new StringBuilder(secretWord);
+            if (wordToGuess.getName().contains(txtGuess.getText())){
+                for (int i = 0; i < wordToGuess.getName().length(); i++) {
+                    if (wordToGuess.getName().charAt(i) ==txtGuess.getText().toCharArray()[0]) {
+                        sb.setCharAt(i,txtGuess.getText().toCharArray()[0]);
+                    }
+                    else {
+                        secretWord+=" ";
+                    }
+                }
+                secretWord=sb.toString();
+                txtWord2Guess.setText(secretWord);
+            }
+            txtGuess.clear();
         }
     }

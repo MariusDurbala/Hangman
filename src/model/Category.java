@@ -7,6 +7,10 @@ public class Category {
     private String name;
     private List<Word> wordList;
 
+    public List<Word> getWordList() {
+        return wordList;
+    }
+
     public Category(String name) {
         this.name = name;
         wordList = new ArrayList<>();
@@ -24,5 +28,11 @@ public class Category {
             }
         }
         return false;
+    }
+    public void reindexWordList(){
+        int index = 1;
+        for (Word word: wordList){
+            word.setId(index++);
+        }
     }
 }

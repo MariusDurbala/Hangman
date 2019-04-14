@@ -20,19 +20,19 @@
    <center>
       <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab fx:id="tabPlay" text="Play">
+          <Tab fx:id="tabPlay" onSelectionChanged="#fillCategoryComboBox" text="Play">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: lightblue;">
                      <children>
                         <Label layoutX="14.0" layoutY="14.0" text="Category" />
-                        <ComboBox layoutX="70.0" layoutY="10.0" prefWidth="200.0" />
+                        <ComboBox fx:id="cmbBoxSelectCategoryPlay" layoutX="70.0" layoutY="10.0" prefWidth="200.0" />
                         <CheckBox layoutX="282.0" layoutY="14.0" mnemonicParsing="false" text="Random category" />
                         <Separator layoutY="42.0" prefHeight="3.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                        <Button layoutX="478.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="187.0" text="Play" />
+                        <Button fx:id="btnPlay" layoutX="478.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlePlay" prefHeight="25.0" prefWidth="187.0" text="Play" />
                         <Label layoutX="14.0" layoutY="62.0" text="Word or letter" />
-                        <TextField layoutX="108.0" layoutY="58.0" prefHeight="25.0" prefWidth="220.0" />
-                        <Button layoutX="346.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Guess" />
-                        <TextField layoutX="108.0" layoutY="109.0" prefHeight="25.0" prefWidth="349.0" />
+                        <TextField fx:id="txtGuess" layoutX="108.0" layoutY="58.0" prefHeight="25.0" prefWidth="220.0" />
+                        <Button fx:id="btnGuess" layoutX="346.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleGuess" prefHeight="25.0" prefWidth="110.0" text="Guess" />
+                        <TextField fx:id="txtWord2Guess" editable="false" layoutX="108.0" layoutY="109.0" prefHeight="25.0" prefWidth="349.0" />
                         <Label layoutX="13.0" layoutY="113.0" text="Word to guess" />
                         <Label layoutX="622.0" layoutY="443.0" prefHeight="51.0" prefWidth="86.0" text="Points">
                            <font>
@@ -77,6 +77,7 @@
                         <TextField fx:id="txtNewWord" layoutX="126.0" layoutY="89.0" prefHeight="25.0" prefWidth="279.0" />
                         <TextField fx:id="txtNewHint" layoutX="126.0" layoutY="132.0" prefHeight="25.0" prefWidth="279.0" />
                         <Button fx:id="btnAddWord" layoutX="354.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleAddWord" prefHeight="25.0" prefWidth="52.0" text="Add" />
+                        <CheckBox fx:id="chkBoxCleanWords" layoutX="126.0" layoutY="179.0" mnemonicParsing="false" text="Reindex files/remove duplicates" />
                      </children>
                   </AnchorPane>
               </content>
