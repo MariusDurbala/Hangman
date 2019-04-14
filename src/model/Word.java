@@ -16,4 +16,16 @@ public class Word {
         this.name = name;
         this.hint = null;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getHint() {
+        return hint;
+    }
 }
