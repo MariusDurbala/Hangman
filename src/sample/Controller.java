@@ -91,7 +91,9 @@
             if (!categoryName.getText().isEmpty()){
                 Utility.createCategoryFile(categoryName.getText());
                 fillCategoryComboBox(null);
+                comboBoxCategories.getSelectionModel().select(categoryName.getText());
                 categoryName.clear();
+
             }
         }
 
@@ -133,15 +135,20 @@
                                 "\\"+comboBoxCategories.getSelectionModel().getSelectedItem().toString()+
                                 ApplicationConstants.CATEGORY_FILE_EXTENSION);
 
-                        Utility.addWordInCategory(category.getLastIdOfWord()+1,
-                                txtNewWord.getText(),
-                                txtNewHint.getText(),
-                                comboBoxCategories.getSelectionModel().getSelectedItem().toString());
+                        if (category.wordExists(txtNewWord.getText())){
+                            lblWordTabCategory.setTextFill(Color.RED);
+                        }
+                        else {
+                            lblWordTabCategory.setTextFill(Color.BLACK);
+                            Utility.addWordInCategory(category.getLastIdOfWord() + 1,
+                                    txtNewWord.getText(),
+                                    txtNewHint.getText(),
+                                    comboBoxCategories.getSelectionModel().getSelectedItem().toString());
 
-                        comboBoxCategories.getSelectionModel().select(-1);
-                        txtNewWord.clear();
-                        txtNewHint.clear();
-
+                            comboBoxCategories.getSelectionModel().select(-1);
+                            txtNewWord.clear();
+                            txtNewHint.clear();
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                         System.out.println(e.getMessage());

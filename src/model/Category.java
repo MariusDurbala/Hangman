@@ -17,4 +17,12 @@ public class Category {
     public int getLastIdOfWord(){
         return wordList.size()>0? wordList.get(wordList.size()-1).getId():0;
     }
+    public boolean wordExists(String word){
+        for (Word wordInList :wordList){
+            if (word.equals(wordInList.getName())){
+                return true;
+            }
+        }
+        return false;
+    }
 }
