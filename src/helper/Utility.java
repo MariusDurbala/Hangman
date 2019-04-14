@@ -2,7 +2,9 @@ package helper;
 
 import constants.ApplicationConstants;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,5 +42,21 @@ public class Utility {
         }
 
         return fileNamesWithoutExtension;
+    }
+    public static void addWordInCategory(String newWord,String newHint,String categoryName)throws IOException{
+        String categoryPath = ApplicationConstants.APP_FOLDER_DATA_PATH+
+                "\\"+ApplicationConstants.CATEGORIES_FOLDER_NAME+
+                "\\"+categoryName+ApplicationConstants.CATEGORY_FILE_EXTENSION;
+
+        FileWriter fileWriter = new FileWriter(categoryPath,true);
+        BufferedWriter writer = new BufferedWriter(fileWriter);
+        writer.append(newWord);
+        if (!newHint.isEmpty()) {
+            writer.append(ApplicationConstants.WORD_SEPARATOR_IN_CATEGORY_ENTRY);
+            writer.append(newHint);
+        }
+        writer.newLine();
+        writer.close();
+        fileWriter.close();
     }
 }

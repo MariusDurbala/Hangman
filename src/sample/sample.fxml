@@ -70,13 +70,13 @@
                         <TextField fx:id="categoryName" layoutX="126.0" layoutY="10.0" prefHeight="25.0" prefWidth="208.0" />
                         <Button fx:id="btnAddCategory" layoutX="348.0" layoutY="10.0" mnemonicParsing="false" onAction="#addCategory" prefHeight="25.0" prefWidth="56.0" text="Add" />
                         <Separator layoutX="26.0" layoutY="47.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                        <Label layoutX="23.0" layoutY="60.0" text="Category" />
+                        <Label fx:id="lblCategoryNameComboBox" layoutX="23.0" layoutY="60.0" text="Category" />
                         <ComboBox fx:id="comboBoxCategories" layoutX="126.0" layoutY="56.0" prefHeight="25.0" prefWidth="279.0" />
-                        <Label layoutX="22.0" layoutY="93.0" text="Word" />
+                        <Label fx:id="lblWordTabCategory" layoutX="22.0" layoutY="93.0" text="Word" />
                         <Label layoutX="26.0" layoutY="136.0" text="Hint" />
-                        <TextField layoutX="126.0" layoutY="89.0" prefHeight="25.0" prefWidth="279.0" />
-                        <TextField layoutX="126.0" layoutY="132.0" prefHeight="25.0" prefWidth="279.0" />
-                        <Button layoutX="354.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Add" />
+                        <TextField fx:id="txtNewWord" layoutX="126.0" layoutY="89.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField fx:id="txtNewHint" layoutX="126.0" layoutY="132.0" prefHeight="25.0" prefWidth="279.0" />
+                        <Button fx:id="btnAddWord" layoutX="354.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleAddWord" prefHeight="25.0" prefWidth="52.0" text="Add" />
                      </children>
                   </AnchorPane>
               </content>
