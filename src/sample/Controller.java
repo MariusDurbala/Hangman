@@ -4,11 +4,11 @@ import constants.ApplicationConstants;
 import helper.Utility;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import sun.rmi.runtime.Log;
 
 public class Controller {
     public TextField Username;
@@ -24,16 +24,29 @@ public class Controller {
     public Button btnAddCategory;
     public ComboBox comboBoxCategories;
 
+    @FXML
+    public void initialize(){
+        tabPane.getTabs().remove(tabLogin);
+        tabPane.getTabs().remove(tabCategories);
+    }
     public void loginAction(ActionEvent event) {
         if (Login.getText().equals(ApplicationConstants.BTN_LOGIN_TEXT)){
 
             if (Username.getText().equals(ApplicationConstants.USERNAME)&&
                     Password.getText().equals(ApplicationConstants.PASSWORD)){
                 Login.setText(ApplicationConstants.BTN_LOGOUT_TEXT);
+
                 lblPassword.setTextFill(Color.BLACK);
                 lblUsername.setTextFill(Color.BLACK);
-                tabPane.getTabs().get(2).setDisable(false);
+
+                tabPane.getTabs().add(tabCategories);
+
                 tabPane.getSelectionModel().select(tabCategories);
+
+                Username.setEditable(false);
+                Password.setEditable(false);
+                //Username.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD,12));
+
             }
             else {
                 lblPassword.setTextFill(Color.RED);
@@ -42,14 +55,18 @@ public class Controller {
         }
         else {
             Login.setText(ApplicationConstants.BTN_LOGIN_TEXT);
+            tabPane.getTabs().remove(tabLogin);
+            tabPane.getTabs().remove(tabCategories);
             tabPane.getSelectionModel().select(tabPlay);
-            tabPane.getTabs().get(1).setDisable(true);
-            tabPane.getTabs().get(2).setDisable(true);
+            Username.setEditable(true);
+            Password.setEditable(true);
+            Username.clear();
+            Password.clear();
         }
     }
 
     public void activateLoginTab(ActionEvent event) {
-        tabPane.getTabs().get(1).setDisable(false);
+        tabPane.getTabs().add(tabLogin);
         tabPane.getSelectionModel().select(tabLogin);
     }
 
@@ -69,8 +86,18 @@ public class Controller {
 
     public void fillCategoryComboBox(Event event) {
         comboBoxCategories.getItems().clear();
-        comboBoxCategories.getItems().addAll(Utility.listFilesWithoutExtensionsFromPath(ApplicationConstants.APP_FOLDER_DATA_PATH+
-                "\\"+ApplicationConstants.CATEGORIES_FOLDER_NAME));
+        if (tabCategories.isSelected()) {
+            try {
+                comboBoxCategories.getItems().addAll(Utility.listFilesWithoutExtensionsFromPath(ApplicationConstants.APP_FOLDER_DATA_PATH +
+                        "\\" + ApplicationConstants.CATEGORIES_FOLDER_NAME));
+            } catch (Exception e) {
+                //do nothing
+            } finally {
+
+                System.out.println("Here i am");
+
+            }
+        }
         //comboBoxCategories.getSelectionModel().select(0);
     }
 }

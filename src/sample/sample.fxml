@@ -50,7 +50,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="tabLogin" disable="true" text="Login">
+          <Tab fx:id="tabLogin" text="Login">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
